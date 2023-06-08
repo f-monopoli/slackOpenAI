@@ -1,0 +1,11 @@
+{
+  "name": "slackopenai",
+  "version": "1.0.0",
+  "description": "Slack Integration with OpenAI API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Federico Monopoli",
+  "license": "ISC"
+}
