@@ -20,9 +20,8 @@ functions:
       tokenOpenAI: ""
 
 package:
+  individually: true
   exclude:
-    - pkg_dist/**
-    - pkg_sls/**
-  excludeDevDependencies: true
+    - ./**
   include:
     - ./dist/**
