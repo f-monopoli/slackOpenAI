@@ -13,7 +13,6 @@ functions:
     name: SlackOpenAiIntegration
     description: Slack - OpenAI API Integration
     memorySize: 256
-    reservedConcurrency: 2
     environment:
       slackChannel: ""
       tokenSlack: ""
@@ -25,4 +24,5 @@ package:
     - pkg_dist/**
     - pkg_sls/**
   excludeDevDependencies: true
+
 
