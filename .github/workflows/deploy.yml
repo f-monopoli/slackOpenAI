@@ -7,24 +7,17 @@ on:
   
 jobs:
   deploy_lambda:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 18
-      - name: Configure AWS Credentials  
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} 
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
-      - name: npm install
-        env:
-          CI: true
-        run: |
-          npm ci 
-      - name: deploy
-        run: |
-          zip -j dist.zip ./dist/*/**
-          aws lambda update-function-code --function-name=SlackOpenAiIntegration --zip-file=fileb://dist.zip 
+      - name: Install serverless globally
+        run: npm install -g serverless
+      - name: Configure serverless authentication
+        run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Install npm dependencies
+        run: npm ci
+      - name: Deploy lambda function
+        run: sls deploy
