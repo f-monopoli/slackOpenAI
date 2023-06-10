@@ -1,21 +1,21 @@
-name: lambda-deployment-with-github-action
+name: lambda-deployment
 
 on: 
   push:
     branches:
-    - main
+      - main
   
 jobs:
   deploy_lambda:
   	runs-on: ubuntu-latest
     steps:
       - name: Checkout to repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Setup node environment
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: 18
           
       - name: Install serverless globally
         run: npm install -g serverless
