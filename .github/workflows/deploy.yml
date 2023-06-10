@@ -1,4 +1,4 @@
-ame: lambda-deployment-with-github-action
+name: lambda-deployment-with-github-action
 
 on: 
   push:
