@@ -3,7 +3,7 @@ name: lambda-deployment-with-github-action
 on: 
   push:
     branches:
-        main # You can use any of your root or master branch name
+    - main
   
 jobs:
   deploy_lambda:
