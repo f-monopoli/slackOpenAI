@@ -1,25 +1,24 @@
+
 const gulp = require('gulp');
-const del = require('del');
-const install = require('gulp-install');
-const gulpzip = require('gulp-zip');
-
-gulp.task('clean', () => {
-    return del(['./dist']);
-});
-
-gulp.task('node-mods', () => {
-    return gulp.src('./package.json')
-        .pipe(gulp.dest('dist/'))
-        .pipe(install({production: true}));
-});
-
-gulp.task('zip', () => {
-    return gulp.src('./dist/**', {nodir:true})
-        .pipe(gulpzip('slackOpenAI.zip'))
-        .pipe(gulp.dest('./dist'));
-});
+const ts = require('gulp-typescript');
+const zip = require('gulp-zip');
+const copy = require('gulp-copy');
 
 
-gulp.task('build', gulp.series('node-mods', 'zip'), () => {
+// copy node_modules to dist
+gulp.task('copy-node-modules', function () {
+    return gulp.src('./node_modules/**/*')
+      .pipe(copy('dist'));
+  });
+  
+  // zip the dist directory
+  gulp.task('zip', function () {
+    return gulp.src('dist/**/*', { nodir: true })
+      .pipe(zip('dist.zip'))
+      .pipe(gulp.dest('.'));
+  });
+  
+  // default task
+  gulp.task('build', gulp.series('copy-node-modules', 'zip'));
 
-})
+

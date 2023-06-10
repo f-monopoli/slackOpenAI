@@ -1,0 +1,28 @@
+service: slackOpenAiIntegrationApp
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs18.x
+  region: us-east-2
+  timeout: 90
+
+functions:
+  slacktoopenai:
+    handler: index.handler
+    name: SlackOpenAiIntegration
+    description: Slack - OpenAI API Integration
+    memorySize: 256
+    reservedConcurrency: 2
+    environment:
+      slackChannel: ""
+      tokenSlack: ""
+      openAiInstruction: ""
+      tokenOpenAI: ""
+
+package:
+  exclude:
+    - pkg_dist/**
+    - pkg_sls/**
+  excludeDevDependencies: true
+
