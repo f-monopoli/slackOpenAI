@@ -25,4 +25,4 @@ package:
     - pkg_sls/**
   excludeDevDependencies: true
   include:
-    - ./dist/**/*
+    - ./dist/**
