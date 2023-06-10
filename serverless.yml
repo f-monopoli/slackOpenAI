@@ -9,7 +9,7 @@ provider:
 
 functions:
   slacktoopenai:
-    handler: index.handler
+    handler: app.handler
     name: SlackOpenAiIntegration
     description: Slack - OpenAI API Integration
     memorySize: 256
@@ -23,5 +23,4 @@ package:
   individually: true
   exclude:
     - ./**
-  include:
-    - ./dist/**
+  artifact: ./dist.zip
