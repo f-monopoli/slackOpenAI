@@ -6,7 +6,7 @@ on:
         main # You can use any of your root or master branch name
   
 jobs:
-  lambda-deploy:
+  deploy_lambda:
   	runs-on: ubuntu-latest
     steps:
       - name: Checkout to repo
