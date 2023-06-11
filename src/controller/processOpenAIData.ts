@@ -13,9 +13,14 @@ export class ProcessOpenAIData extends OpenAIService {
     }
 
     public async sendPromptToAI (messages: string[]) {
-        const payload: Completions = this.createCompletionsPayload(messages)
-        const aiResponse = await super.sendPromptToAi(payload)
-        this.mapOpenAiResponse(aiResponse)
+        try {
+            const payload: Completions = this.createCompletionsPayload(messages)
+            const aiResponse = await super.sendPromptToAi(payload)
+            this.mapOpenAiResponse(aiResponse)
+        } catch (error: any) {
+           console.log(error) 
+        }
+        
     }
 
     private createCompletionsPayload(messages: string[]): Completions {
